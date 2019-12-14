@@ -2,7 +2,8 @@ FROM debian:latest
 
 MAINTAINER Hans-Willi Werres
 
-RUN apk add --no-cache fetchmail
+RUN apt-get install -y --no-install-recommends \
+        fetchmail
 
 # First stage: Build
 #ARG DISTRO=alpine:3.10
@@ -17,7 +18,9 @@ RUN apk add --no-cache fetchmail
 #    make
 
 # python3 shared with most images
-RUN apk add --no-cache python3 python3-pip 
+RUN apt-get install -y --no-install-recommends \
+        python3 \
+        python3-pip 
 
 # Image specific layers under this line
 #RUN apk add --no-cache ca-certificates openssl \
