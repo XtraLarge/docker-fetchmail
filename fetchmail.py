@@ -19,7 +19,7 @@ RC_LINE = """
 poll "{host}" proto {protocol}  port {port}
     user "{username}" password "{password}"
     is "{user_email}"
-    smtphost "{smtphost}"
+    smtphost "{smtphost}"/"{smtpport}
     {options}
 """
 
@@ -48,25 +48,20 @@ def run(debug):
     source_host  = os.getenv('SOURCE_HOST', '')
     source_port  = os.getenv('SOURCE_PORT', '')
     source_proto = os.getenv('SOURCE_PROTOCOL', '')
-    dest_user    = os.getenv('DEST_USER', '')
-    dest_pass    = os.getenv('DEST_PASS', '')
-    dest_host    = os.getenv('DEST_HOST', '')
-    dest_port    = os.getenv('DEST_PORT', '')
+    dest_email   = os.getenv('DEST_EMAIL', '')
+    dest_host    = os.getenv('DEST_HOST', 'localhost')
+    dest_port    = os.getenv('DEST_PORT', '25')
     options      = os.getenv('OPTIONS', '')
     
-    smtphost, smtpport = extract_host_port(os.environ.get("HOST_SMTP", "smtp"), None)
-    if smtpport is None:
-        smtphostport = smtphost
-    else:
-        smtphostport = "%s/%d" % (smtphost, smtpport)
     fetchmailrc += RC_LINE.format(
-        user_email=escape_rc_string(fetch["user_email"]),
-        protocol=fetch["protocol"],
-        host=escape_rc_string(fetch["host"]),
-        port=fetch["port"],
-        smtphost=smtphostport,
-        username=escape_rc_string(fetch["username"]),
-        password=escape_rc_string(fetch["password"]),
+        user_email=escape_rc_string(dest_email]),
+        protocol=source_proto,
+        host=escape_rc_string(source_host),
+        port=source_port,
+        smtphost=dest_host,
+        smtpport=dest_port,
+        username=escape_rc_string(source_user),
+        password=escape_rc_string(source_pass),
         options=options
     )
     if debug:
