@@ -2,7 +2,7 @@ FROM debian:latest
 
 MAINTAINER Hans-Willi Werres
 
-RUN apt serah fetchmail
+RUN apt search fetchmail
 
 RUN apt-get install -y --no-install-recommends \
         fetchmail
