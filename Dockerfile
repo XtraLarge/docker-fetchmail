@@ -19,7 +19,7 @@ RUN apt-get install -y --no-install-recommends \
 #COPY --from=builder /fetchmail-7.0.0-alpha6/fetchmail /usr/local/bin
 COPY fetchmail.py /fetchmail.py
 
-RUN adduser -D fetchmail
+RUN adduser fetchmail
 USER fetchmail
 
 CMD ["/fetchmail.py"]
