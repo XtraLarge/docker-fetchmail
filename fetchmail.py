@@ -17,7 +17,7 @@ RC_LINE = """
 poll "{host}" proto {protocol}  port {port}
     user "{username}" password "{password}"
     is "{user_email}"
-    smtphost "{smtphost}"/"{smtpport}
+    smtphost "{smtphost}/{smtpport}"
     {options}
 """
 
