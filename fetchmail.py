@@ -7,6 +7,7 @@ import shlex
 import subprocess
 import re
 
+
 FETCHMAIL = """
 fetchmail -N \
     -f {}
@@ -39,7 +40,7 @@ def fetchmail(fetchmailrc):
         output = subprocess.check_output(command, shell=True)
         return output
 
-
+    
 def run(debug):
     source_user  = os.getenv('SOURCE_USER', '')
     source_pass  = os.getenv('SOURCE_PASS', '')
@@ -50,7 +51,8 @@ def run(debug):
     dest_host    = os.getenv('DEST_HOST', 'localhost')
     dest_port    = os.getenv('DEST_PORT', '25')
     options      = os.getenv('OPTIONS', '')
-    
+
+    fetchmailrc = ""
     fetchmailrc += RC_LINE.format(
         user_email=escape_rc_string(dest_email),
         protocol=source_proto,
