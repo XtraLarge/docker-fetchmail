@@ -54,7 +54,7 @@ def run(debug):
     options      = os.getenv('OPTIONS', '')
     
     fetchmailrc += RC_LINE.format(
-        user_email=escape_rc_string(dest_email]),
+        user_email=escape_rc_string(dest_email),
         protocol=source_proto,
         host=escape_rc_string(source_host),
         port=source_port,
