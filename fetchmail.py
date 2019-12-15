@@ -6,8 +6,6 @@ import tempfile
 import shlex
 import subprocess
 import re
-import requests
-
 
 FETCHMAIL = """
 fetchmail -N \
