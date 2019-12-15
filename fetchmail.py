@@ -72,7 +72,6 @@ def run(debug):
         # No mail is not an error
         if not error_message.startswith("fetchmail: No mail"):
             print(error_message)
-        user_info = "for %s at %s" % (fetch["user_email"], fetch["host"])
         # Number of messages seen is not a error as well
         if ("messages" in error_message and
                 "(seen " in error_message and
